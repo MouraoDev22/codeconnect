@@ -102,6 +102,49 @@ textarea {
     height: 10.0625rem;
 }
 
+.main-imagem {
+    padding: 1rem 1.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.5rem;
+}
+
+.botao-carregar {
+    width: 100%;
+    background-color: transparent;
+    border: 0.125rem solid var(--secondary-color);
+    border-radius: 0.5rem;
+    color: var(--secondary-color);
+    padding: 0.75rem 0;
+    font-weight: bold;
+    font-size: 1rem;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+}
+
+.botao-carregar::after {
+    content: "";
+    background-image: url("./img/upload.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.5rem;
+}
+
+.container-imagem-nome {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
 .lista-tags {
     display: flex;
 }
@@ -113,6 +156,7 @@ textarea {
     gap: 0.625rem;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
+    cursor: pointer;
 }
 
 .container-botoes {
@@ -129,6 +173,7 @@ textarea {
     font-family: var(--font-family);
     font-size: 1.125rem;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .botao-descartar {
@@ -141,6 +186,27 @@ textarea {
 .botao-descartar::after {
     content: "";
     background-image: url("./img/trash.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.5rem;
+}
+
+.botao-publicar {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    position: relative;
+}
+
+.botao-publicar::after {
+    content: "";
+    background-image: url("./img/arrow_forward2.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 0.9375rem;
