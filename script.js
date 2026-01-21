@@ -25,15 +25,25 @@ inputUpload.addEventListener("change", async function(e) {
     }
 });
 
-inputTags.addEventListener("keypress", function(e) {
+inputTags.addEventListener("keypress", async function(e) {
     if (e.key === "Enter") {
         e.preventDefault();
         const tagTexto = inputTags.value.trim();
         if (tagTexto !== "") {
-            const novaTag = document.createElement("li");
-            novaTag.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
-            listaTags.appendChild(novaTag);
-            inputTags.value = "";
+            try {
+                const tagExiste = await verificaTagsDisponiveis(tagTexto);
+                if (tagExiste) {
+                    const novaTag = document.createElement("li");
+                    novaTag.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
+                    listaTags.appendChild(novaTag);
+                    inputTags.value = "";
+                } else {
+                    alert("A tag não está disponível.");
+                }
+            } catch (error) {
+                console.error("Erro ao verificar a disponibilidade da tag:", error);
+                alert("Erro ao verificar a disponibilidade da tag. Por favor, tente novamente mais tarde.");
+            }
         }
     }
 });

@@ -231,3 +231,7 @@ textarea {
 .container-descricao {
     width: 422px;
 }
+
+.hidden-input {
+    display: none;
+}
