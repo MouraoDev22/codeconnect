@@ -1,4 +1,4 @@
-const tagsDisponiveis = ["Front-end", "Back-end", "Full-stack", "HTML", "CSS", "JavaScript", "React", "Vue", "Angular", "Node.js", "Data Science"]
+const tagsDisponiveis = ["Front-end", "Back-end", "Full-stack", "HTML", "CSS", "JavaScript", "React", "Vue", "Angular", "Node.js", "Data Science"];
 
 const uploadBtn = document.getElementById("upload-btn");
 const inputUpload = document.getElementById("imagem-upload");
@@ -6,6 +6,7 @@ const imagemPrincipal = document.querySelector(".main-imagem");
 const nomeDaImagem = document.querySelector(".container-imagem-nome p");
 const inputTags = document.getElementById("input-tags");
 const listaTags = document.getElementById("lista-tags");
+const botaoPublicar = document.querySelector(".botao-publicar");
 
 uploadBtn.addEventListener("click", function(e) {
     inputUpload.click();
@@ -21,8 +22,8 @@ inputUpload.addEventListener("change", async function(e) {
             nomeDaImagem.textContent = conteudoDoArquivo.nome;
         } catch (error) {
             console.error("Erro ao carregar a imagem:", error);
-        }
-    }
+        };
+    };
 });
 
 inputTags.addEventListener("keypress", async function(e) {
@@ -43,16 +44,24 @@ inputTags.addEventListener("keypress", async function(e) {
             } catch (error) {
                 console.error("Erro ao verificar a disponibilidade da tag:", error);
                 alert("Erro ao verificar a disponibilidade da tag. Por favor, tente novamente mais tarde.");
-            }
-        }
-    }
+            };
+        };
+    };
 });
 
 listaTags.addEventListener("click", function(e) {
     if (e.target.classList.contains("remove-tag")) {
         const tagQueSeraRemovida = e.target.parentElement;
         listaTags.removeChild(tagQueSeraRemovida);
-    }
+    };
+});
+
+botaoPublicar.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    const nomeDoProjeto = document.getElementById("nome").value;
+    const descricaoDoProjeto = document.getElementById("descricao").value;
+    const tagsProjeto = Array.from(listaTags.querySelectorAll("p")).map((tag) => tag.textContent);
 });
 
 function lerConteudoDoArquivo(arquivo) {
@@ -60,15 +69,15 @@ function lerConteudoDoArquivo(arquivo) {
         const leitor = new FileReader();
         leitor.onload = function() {
             resolve({ url: leitor.result, nome: arquivo.name });
-        }
+        };
     
         leitor.onerror = function() {
             reject(new Error(`Erro na leitura do arquivo ${arquivo.name}`));
-        }
+        };
 
         leitor.readAsDataURL(arquivo);
     });
-}
+};
 
 async function verificaTagsDisponiveis(tagTexto) {
     return new Promise((resolve) => {
@@ -76,4 +85,17 @@ async function verificaTagsDisponiveis(tagTexto) {
             resolve(tagsDisponiveis.includes(tagTexto));
         }, 1000);
     });
-}
+};
+
+async function publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const deuCerto = Math.random() > 0.5;
+            if (deuCerto) {
+                resolve("Projeto publicado com sucesso!");
+            } else {
+                reject(new Error("Erro ao publicar o projeto"));
+            }
+        }, 2000);
+    });
+};
