@@ -7,6 +7,7 @@ const nomeDaImagem = document.querySelector(".container-imagem-nome p");
 const inputTags = document.getElementById("input-tags");
 const listaTags = document.getElementById("lista-tags");
 const botaoPublicar = document.querySelector(".botao-publicar");
+const botaoDescartar = document.querySelector(".botao-descartar");
 
 uploadBtn.addEventListener("click", function(e) {
     inputUpload.click();
@@ -62,7 +63,28 @@ botaoPublicar.addEventListener("click", async (event) => {
     const nomeDoProjeto = document.getElementById("nome").value;
     const descricaoDoProjeto = document.getElementById("descricao").value;
     const tagsProjeto = Array.from(listaTags.querySelectorAll("p")).map((tag) => tag.textContent);
+
+    try {
+        const resultado = await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto);
+        console.log(resultado);
+        alert("Projeto publicado com sucesso!");
+    } catch (error) {
+        console.error("Erro ao publicar o projeto:", error);
+        alert("Erro ao publicar o projeto. Por favor, tente novamente mais tarde.");
+    }
 });
+
+botaoDescartar.addEventListener("click", (event) => {
+    event.preventDefault();
+    
+    const formulario = document.querySelector("form");
+    formulario.reset();
+
+    imagemPrincipal.src = "./img/imagem1.png";
+    nomeDaImagem.textContent = "image_projeto.png";
+    listaTags.innerHTML = "";
+});
+
 
 function lerConteudoDoArquivo(arquivo) {
     return new Promise((resolve, reject) => {
