@@ -57,8 +57,8 @@ listaTags.addEventListener("click", function(e) {
     };
 });
 
-botaoPublicar.addEventListener("click", async (event) => {
-    event.preventDefault();
+botaoPublicar.addEventListener("click", async function(e) {
+    e.preventDefault();
 
     const nomeDoProjeto = document.getElementById("nome").value;
     const descricaoDoProjeto = document.getElementById("descricao").value;
@@ -74,8 +74,8 @@ botaoPublicar.addEventListener("click", async (event) => {
     }
 });
 
-botaoDescartar.addEventListener("click", (event) => {
-    event.preventDefault();
+botaoDescartar.addEventListener("click", function(e) {
+    e.preventDefault();
     
     const formulario = document.querySelector("form");
     formulario.reset();
