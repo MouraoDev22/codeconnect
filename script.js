@@ -9,9 +9,7 @@ const listaTags = document.getElementById("lista-tags");
 const botaoPublicar = document.querySelector(".botao-publicar");
 const botaoDescartar = document.querySelector(".botao-descartar");
 
-uploadBtn.addEventListener("click", function(e) {
-    inputUpload.click();
-});
+uploadBtn.addEventListener("click", () => inputUpload.click());
 
 inputUpload.addEventListener("change", async function(e) {
     const arquivo = e.target.files[0];
